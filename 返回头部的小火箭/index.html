@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .goTop{
+            position: fixed;
+            right: 30px;
+            bottom: 40px;
+            display: none;
+            height: 65px;
+            width: 35px;
+        }
+        div p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+</div>
+
+<div id="goTop" class="goTop">
+    <img src="images/Top.jpg" alt="">
+</div>
+<script>
+    function scroll() {
+        return {
+            left: document.body.scrollLeft,
+            top: document.body.scrollTop
+        }
+    }
+    //隐藏显示
+    function show(obj) {
+        obj.style.display = 'block';
+    }
+    function hide(obj) {
+        obj.style.display = 'none';
+    }
+
+    var goTop = document.getElementById('goTop');
+    window.onscroll = function () {
+        //现实或者隐藏小火箭
+        scroll().top > 0 ? show(goTop) : hide(goTop);
+        //获取从哪里开始回到顶部  target= 0的位置
+        leader = scroll().top;
+    };
+    var leader = 0, target = 0, timer = null;
+    goTop.onclick = function () {
+        //晃动动画
+        timer = setInterval(function () {
+            leader = leader + (target - leader) / 10;
+            //window.scrollTo(xpos, ypos)  会把页面卷到响应的位置
+            window.scrollTo(0, leader);
+            //判断是否应该停止定时器
+            if(Math.abs(leader - target)< 0.01){
+                //当差值满足条件时, 直接跳转到目标位置, 并且清除定时器
+                window.scrollTo(0, target);
+                clearInterval(timer);
+            }
+        }, 30);
+    }
+</script>
+
+</body>
+</html>

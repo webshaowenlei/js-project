@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        img {
+            /*竖直方向的对齐:  为了消除ie图片的3px的偏差 */
+            vertical-align: top;
+        }
+        .main{
+            height: auto;
+            width: 100%;
+            background-color: blueviolet;
+        }
+        .main li:nth-child(2n) {
+            height: 200px;
+            background-color: red;
+        }
+        .main li:nth-child(2n+1) {
+            height: 200px;
+            background-color: green;
+        }
+        .fixed {
+            position: fixed;
+            left: 0;
+            top:0;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="top" class="top">
+    <img src="images/top.png" alt="">
+</div>
+<div id="nav" class="nav">
+    <img src="images/nav.png" alt="">
+</div>
+<div class="main">
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+<script>
+
+    var nav = document.getElementById('nav');
+    var navTop = nav.offsetTop; //168
+    function scroll() {
+        if(window.pageYOffset != null){  //ie9+  和其他浏览器
+            return {
+                left: window.pageXOffset,
+                top: window.pageYOffset
+            }
+        }else if(document.compatMode == 'CSS1Compat'){
+            //标准浏览器
+            return {
+                left: document.documentElement.scrollLeft,
+                top: document.documentElement.scrollTop
+            }
+        }else {
+            return {
+                left: document.body.scrollLeft,
+                top: document.body.scrollTop
+            }
+        }
+    }
+
+    window.onscroll = function () {
+        if (scroll().top >= navTop){
+           nav.className = 'nav fixed';
+            //nav.className += ' fixed';
+            //下面是HTML5的解决方案
+            //nav.classList.add('fixed');
+        }else {
+            nav.className = 'nav';
+        }
+    }
+
+</script>
+
+</body>
+</html>

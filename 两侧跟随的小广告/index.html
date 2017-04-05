@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跟随的小广告</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            padding-left: 135px;
+        }
+        div p {
+            margin-bottom: 10px;
+        }
+        img {
+            vertical-align: top;
+            position: absolute;
+            left: 0;
+            /* top值可以自己定义*/
+            top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+
+<img id="ad" src="images/aside.jpg" alt="">
+<div>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+    <p>天王盖地虎, 宝塔镇河妖</p>
+</div>
+
+<script>
+//    获取页面卷去的left和top值, 返回的数据类型用json包装
+    function scroll() {
+        if(window.pageYOffset != null){  //ie9+  和其他浏览器
+            return {
+                left: window.pageXOffset,
+                top: window.pageYOffset
+            }
+        }else if(document.compatMode == 'CSS1Compat'){
+            //标准浏览器
+            return {
+                left: document.documentElement.scrollLeft,
+                top: document.documentElement.scrollTop
+            }
+        }else {
+            return {
+                left: document.body.scrollLeft,
+                top: document.body.scrollTop
+            }
+        }
+    }
+        var pic = document.getElementById('ad');
+        var leader =0, target =0, timer=null;
+        //top被window劫持  尽量不要使用这个系统的保留字,
+        var top = pic.offsetTop;//50是一个固定值
+
+        window.onscroll = function () {
+            //因为等下要开启一个定时器, 先关闭上一个定时器
+            clearInterval(timer);
+            target = scroll().top + top;
+            timer = setInterval(function () {
+                leader = leader + (target - leader) / 10;
+                pic.style.top = leader + 'px';
+            }, 30);
+        }
+</script>
+
+</body>
+</html>

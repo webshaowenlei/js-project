@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .search{
+            width: 258px;
+            height: 40px;
+            margin: 100px auto;
+
+        }
+        .search input{
+            width: 208px;
+            height: 40px;
+            outline-style: none;
+            border: none;
+            background-image: url(images/left.jpg);
+            color: #cccccc;
+            float: left;
+            padding-left: 8px;
+        }
+        .search button{
+            width: 42px;
+            height: 40px;
+            background-image: url(images/right.jpg);
+            border: none;
+            float: left;
+            outline-style: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="search">
+    <input type="text" value="请输入..." id="txt">
+    <button></button>
+</div>
+<script type="text/javascript">
+    var txt = document.getElementById("txt");
+    // 获得焦点事件
+    txt.onfocus = function () {
+        //一旦聚焦就要清空value
+        if(txt.value == "请输入..."){
+
+            txt.value = "";
+            txt.style.color = "#333";
+        }
+    };
+    // 失去焦点事件
+    txt.onblur = function () {
+        // 要先判断,用户是否输入字
+        // 如果没有, 则置为请输入...
+        if (txt.value == ""){
+
+            txt.value = "请输入...";
+            txt.style.color = "#ccc";
+        }
+    }
+</script>
+</body>
+</html>

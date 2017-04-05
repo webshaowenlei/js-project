@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        img{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var gallery = document.getElementById("gallery");
+            var placeholder = document.getElementById("placeholder");
+            var links = gallery.getElementsByTagName("a");
+            // 此p 是用来存储  我们使用document.createElement("p");创建出来的对象
+            var p = null;
+            var text = null;
+
+
+
+            for (var i = 0; i < links.length; i++){
+                links[i].onclick = function () {
+                    placeholder.src = this.href;
+//                    alert("1");
+
+                    // 当p未被创建, 则创建
+                    if (p == null){
+                        p = document.createElement("p");
+
+                        // appendChild  parent.apendChild(son);
+                        document.body.appendChild(p);
+                    }
+
+                    // 通过判断p的子节点长度, 如果子节点长度大于0 则移除text子节点
+                    if (p.childNodes.length > 0){
+                        p.removeChild(text);
+                    }
+
+                    text = document.createTextNode(this.title);
+                    p.appendChild(text);
+
+                    // 如果placeholder.src = this.href 执行成功,
+                    // 就不让浏览器执行某个a标签被点击时的默认操作
+                    // 使用return false 就可以做到
+                    return false;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>图片展示</h1>
+<ul id="gallery">
+    <li><a href="images/1.jpg" title="这是第一张图片">第一张图片</a></li>
+    <li><a href="images/2.jpg" title="这是第二张图片">第二张图片</a></li>
+    <li><a href="images/3.jpg" title="这是第三张图片">第三张图片</a></li>
+    <li><a href="images/4.jpg" title="这是第四张图片">第四张图片</a></li>
+</ul>
+<img src="images/5.png" alt="" id="placeholder">
+<!--<p id="description">这里是图片描述</p>-->
+</body>
+</html>
